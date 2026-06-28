@@ -12,3 +12,5 @@ uv.lock
 .python-version
 game_state.jsonl
 game_states.jsonl
+game_events
+game_state
