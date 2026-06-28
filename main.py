@@ -40,20 +40,20 @@ def main():
             if event.type == pygame.QUIT:
                 return 0
 
-        for obj in updatable:
-            obj.update(dt)
-
         for asteroid in asteroids:
-            if player.collides_with(asteroid):
+            for shot in shots:
+                if shot.collides_with(asteroid):
+                    log_event("asteroid_shot")
+                    asteroid.split()
+                    shot.kill()
+
+            if asteroid.collides_with(player):
                 log_event("player_hit")
                 print("GAME OVER!")
                 sys.exit()
 
-            for shot in shots:
-                if shot.collides_with(asteroid):
-                    log_event("asteroid_shot")
-                    asteroid.kill()
-                    shot.kill()
+        for obj in updatable:
+            obj.update(dt)
         
         screen.fill("black")
 
